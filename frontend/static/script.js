@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:5000"; // change to EC2 URL later
+// const API_URL = "http://15.206.147.147:5000"; // change to EC2 URL later
 
 // ---------------- LOGIN ----------------
 function login() {
@@ -93,14 +93,14 @@ function submitThought() {
 
 // ---------------- HOME ----------------
 function goHome() {
-    window.location.href = "index.html";
+    window.location.href = "/";
 }
 
 // ---------------- LOGOUT ----------------
 function logout() {
     localStorage.removeItem("username"); // clear login session
     alert("Logged out successfully!");
-    window.location.href = "index.html";
+    window.location.href = "/";
 }
 
 // ---------------- DASHBOARD PAGE SETUP ----------------

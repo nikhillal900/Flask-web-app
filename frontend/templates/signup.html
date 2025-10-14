@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Account</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <!-- Page title outside the box -->
@@ -30,6 +30,10 @@
             <button id="createBtn">Create</button>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        const API_URL = "{{ api_url }}";
+    </script>
+    <!-- Link JS using Flask static -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

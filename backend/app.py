@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import sqlite3
 from db import init_db
@@ -16,7 +16,11 @@ init_db()  # ensure database exists
 # Tell Flask where frontend files are
 FRONTEND_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../frontend')
 
-app = Flask(__name__, static_folder=FRONTEND_DIR)
+app = Flask(
+    __name__,
+    template_folder=os.path.join(FRONTEND_DIR, 'templates'),  # HTML files go here
+    static_folder=os.path.join(FRONTEND_DIR, 'static')        # CSS, JS, images go here
+)
 app.config['SECRET_KEY'] = SECRET_KEY
 CORS(app)
 
@@ -30,13 +34,18 @@ def query_db(query, args=(), one=False):
     return (r[0] if r else None) if one else r
 
 # -------- Serve frontend --------
+# Serve pages using templates
 @app.route('/')
 def serve_index():
-    return send_from_directory(FRONTEND_DIR, 'index.html')
+    return render_template('index.html', api_url=os.getenv("API_URL"))
 
-@app.route('/<path:path>')
-def serve_file(path):
-    return send_from_directory(FRONTEND_DIR, path)
+@app.route('/signup.html')
+def serve_signup():
+    return render_template('signup.html', api_url=os.getenv("API_URL"))
+
+@app.route('/dashboard.html')
+def serve_dashboard():
+    return render_template('dashboard.html', api_url=os.getenv("API_URL"))
 
 # -------- API endpoints --------
 @app.route('/signup', methods=['POST'])
