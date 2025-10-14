@@ -1,0 +1,259 @@
+/* Reset & base */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Pacifico', cursive;
+    background-image: url('images/bgimage.jpg'); /* replace with your image path */
+    background-size: cover;      /* make it cover full screen */
+    background-position: center; /* center the image */
+    background-repeat: no-repeat;
+}
+
+/* Apply font to all input, textarea, select, and buttons */
+input, textarea, select, button, label {
+    font-family: 'Pacifico', cursive;
+}
+
+.container-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* full viewport */
+}
+
+/* Wrap login box and title together */
+.login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Title */
+.title {
+    font-size: 4em; /* big title */
+    font-family: 'Pacifico', cursive; 
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px; /* space between title and box */
+    color: rgb(5, 172, 239);
+}
+
+/* Container to center login box */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+/* Login Box */
+.login-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    padding: 30px;
+    border: 2px solid black;  /* border as in your image */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Input Groups */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid black;  /* input border */
+    border-radius: 5px;
+}
+
+/* Buttons */
+.login-box button {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid black;  /* button border */
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* ------------------------------------ */
+/* DASHBOARD.HTML STYLES */
+/* ------------------------------------ */
+/* Center the thoughts section */
+
+body.dashboard-page {
+    background-image: url('images/dashimage.jpg'); /* path to dashboard image */
+    background-size: cover;       /* fill the screen */
+    background-position: center;  /* center the image */
+    background-repeat: no-repeat; /* no repeating */
+    background-attachment: fixed; /* optional: fixed background */
+}
+
+.thoughts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* horizontal center */
+    justify-content: flex-start;  /* vertical center */
+    height: calc(100vh - 60px); /* full screen minus top buttons height */
+    text-align: center;
+    padding-top: 50px;
+}
+
+.thoughts-container h1 {
+    color: white;           /* change to any color you want */
+    font-size: 3em;  
+    font-family: 'Pacifico', cursive;        /* optional: adjust size */
+    text-align: center;     /* optional: center text */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* optional: make it readable on background */
+}
+
+/* Textarea styling */
+.thoughts-container textarea {
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+    font-size: 16px;
+    margin: 15px 0;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+/* Submit button styling */
+.thoughts-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.thoughts-container button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Top Buttons (Dashboard) */
+.top-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px;
+}
+
+.top-buttons button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: #ffc107;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.top-buttons button:hover {
+    background-color: #e0a800;
+}
+/* Signup title outside the box */
+.signup-title {
+    text-align: center;
+    font-size: 3em;
+    color: white;
+    margin-top: 30px;
+    font-family: 'Pacifico', cursive;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+/* Center container */
+.signup-container {
+    display: flex;
+    justify-content: center;      /* horizontal center */
+    align-items: flex-start;      /* align box to top instead of center */
+    height: calc(100vh - 100px);  /* full viewport minus title height */
+    padding-top: 30px;            /* moves box slightly below the title */
+}
+
+/* Signup box */
+.signup-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    padding: 30px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Input groups */
+.signup-box .input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.signup-box .input-group label {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-family: 'Pacifico', cursive;
+}
+
+.signup-box .input-group input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: 'Pacifico', cursive;
+}
+
+/* Button */
+.signup-box button {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    font-family: 'Pacifico', cursive;
+}
+
+.signup-box button:hover {
+    background-color: #e0e0e0;
+}
+
+/* ------------------------------------ */
+/* RESPONSIVE */
+@media screen and (max-width: 600px) {
+    .login-box, .dashboard-container textarea {
+        width: 90%;
+    }
+}
