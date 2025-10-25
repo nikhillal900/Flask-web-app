@@ -2,58 +2,33 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository on Jenkins') {
+        stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/nikhillal900/Flask-web-app.git'
             }
         }
 
-        stage('Deploy to EC2') {
+        stage('Install Dependencies') {
             steps {
-                sshagent(['app-ec2-key']) {
-                    sh """
-                    ssh -o StrictHostKeyChecking=no ubuntu@43.204.148.106 '
-                        # Clone repo if it doesn't exist
-                        if [ ! -d ~/Flask-web-app ]; then
-                            git clone https://github.com/nikhillal900/Flask-web-app.git ~/Flask-web-app
-                        else
-                            cd ~/Flask-web-app && git reset --hard && git pull
-                        fi
+                sh '''
+                pip3 install --user -r requirements.txt
+                '''
+            }
+        }
 
-                        # Navigate to backend folder
-                        cd ~/Flask-web-app/backend
+        stage('Deploy') {
+            steps {
+                sh '''
+                # Stop existing Flask app if running
+                pkill -f "python3 main.py" || true
 
-                        # Create virtual environment if missing
-                        if [ ! -d ../vnv ]; then
-                            python3 -m venv ../vnv
-                        fi
+                # Copy files to deploy directory
+                cp -r . /var/www/flask-app/
 
-                        # Activate virtual environment
-                        source ../vnv/bin/activate
-
-                        # Upgrade pip and install dependencies
-                        pip install --upgrade pip
-                        pip install -r ../requirements.txt
-
-                        # Stop previous app if running
-                        pkill -f "python3 app.py" || true
-
-                        # Start Flask app in background
-                        nohup python3 app.py > app.log 2>&1 &
-                    '
-                    """
-                }
+                # Start new version
+                nohup python3 /var/www/flask-app/main.py > /var/www/flask-app/app.log 2>&1 &
+                '''
             }
         }
     }
-
-    post {
-        success {
-            echo "Deployment completed successfully!"
-        }
-        failure {
-            echo "Deployment failed!"
-        }
-    }
 }
-
