@@ -36,7 +36,8 @@ pipeline {
                 
                 # Start new version
                 cd /var/www/flask-app/backend
-                nohup python3 app.py > app.log 2>&1 &
+                . ../venv/bin/activate
+                nohup python3 app.py > ../app.log 2>&1 &
                 '''
             }
         }
