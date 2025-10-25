@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        SECRET_KEY = credentials('flask-secret-key')  // Jenkins secret
+    }
+    
     stages {
         stage('Checkout') {
             steps {
@@ -26,7 +30,10 @@ pipeline {
 
                 # Copy files to deploy directory
                 cp -r . /var/www/flask-app/
-
+                
+                # Inject SECRET_KEY from Jenkins
+                export SECRET_KEY=$SECRET_KEY
+                
                 # Start new version
                 cd /var/www/flask-app/
                 nohup python3 app.py > app.log 2>&1 &
