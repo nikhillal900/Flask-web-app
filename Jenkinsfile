@@ -35,7 +35,7 @@ pipeline {
                 export SECRET_KEY=$SECRET_KEY
                 
                 # Start new version
-                cd /var/www/flask-app/
+                cd /var/www/flask-app/backend
                 nohup python3 app.py > app.log 2>&1 &
                 '''
             }
