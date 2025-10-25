@@ -12,9 +12,9 @@ pipeline {
             steps {
                 sh '''
                 cd /var/www/flask-app/
-                python3 -m venv venv
+                sudo python3 -m venv venv
                 source venv/bin/activate
-                pip install -r requirements.txt
+                sudo venv/bin/pip install -r requirements.txt
                 '''
             }
         }
@@ -23,13 +23,13 @@ pipeline {
             steps {
                 sh '''
                 # Stop existing Flask app if running
-                pkill -f "python3 main.py" || true
+                sudo pkill -f "python3 main.py" || true
 
                 # Copy files to deploy directory
-                cp -r . /var/www/flask-app/
+                sudo cp -r . /var/www/flask-app/
 
                 # Start new version
-                nohup python3 /var/www/flask-app/main.py > /var/www/flask-app/app.log 2>&1 &
+                sudo nohup python3 /var/www/flask-app/main.py > /var/www/flask-app/app.log 2>&1 &
                 '''
             }
         }
