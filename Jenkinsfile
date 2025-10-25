@@ -28,8 +28,8 @@ pipeline {
                 # Stop existing Flask app if running
                 pkill -f "python3 app.py" || true
 
-                # Copy files to deploy directory
-                cp -r . /var/www/flask-app/
+                # Copy only necessary files (ignore .git)
+                rsync -av --exclude='.git' ./ /var/www/flask-app/
                 
                 # Inject SECRET_KEY from Jenkins
                 export SECRET_KEY=$SECRET_KEY
