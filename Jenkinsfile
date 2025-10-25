@@ -11,7 +11,6 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                cd /var/www/flask-app/
                 python3 -m venv venv
                 . venv/bin/activate
                 pip install -r requirements.txt
@@ -23,13 +22,14 @@ pipeline {
             steps {
                 sh '''
                 # Stop existing Flask app if running
-                pkill -f "python3 main.py" || true
+                pkill -f "python3 app.py" || true
 
                 # Copy files to deploy directory
                 cp -r . /var/www/flask-app/
 
                 # Start new version
-                nohup python3 /var/www/flask-app/main.py > /var/www/flask-app/app.log 2>&1 &
+                cd /var/www/flask-app/
+                nohup python3 app.py > app.log 2>&1 &
                 '''
             }
         }
